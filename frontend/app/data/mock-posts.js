@@ -41,4 +41,18 @@ export const MOCK_POSTS = [
     caption: "Fim de treino. Morto mas feliz.",
     timestamp: "1d atrás",
   },
+  {
+    id: 4,
+    user: {
+      name: "Maria Costa",
+      username: "@mariac",
+      avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
+    },
+    location: "Quadra do Setor 4",
+    imageUrl: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=800&auto=format&fit=crop",
+    likes: 89,
+    comments: 12,
+    caption: "Golaço que fala? O time hoje jogou muito! ⚽",
+    timestamp: "4h atrás",
+  },
 ]

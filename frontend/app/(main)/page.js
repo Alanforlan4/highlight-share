@@ -1,7 +1,7 @@
-'use client'
+"use client";
 
 import { PostCard } from "@/components/feed/PostCard";
-import { MOCK_POSTS } from "./data/mock-posts";
+import { MOCK_POSTS } from "../data/mock-posts";
 import { useState } from "react";
 import { Ghost } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -53,7 +53,9 @@ export default function FeedPage() {
       )}
 
       {!hasMore && displayPosts.length > 0 && (
-        <div className="py-8 text-xs text-muted-foreground">Você chegou ao fim!</div>
+        <div className="py-8 text-xs text-muted-foreground">
+          Você chegou ao fim!
+        </div>
       )}
     </main>
   );

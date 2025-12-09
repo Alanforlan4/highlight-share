@@ -1,4 +1,4 @@
-import { Bell, Home, PlusSquare, User, Users } from "lucide-react";
+import { Home, PlusSquare, User } from "lucide-react";
 
 export const menuItems = [
   {
@@ -7,20 +7,10 @@ export const menuItems = [
     icon: Home
   },
   {
-    label: "Grupos",
-    href: "/groups",
-    icon: Users
-  },
-  {
     label: "Postar",
     href: "/post",
     icon: PlusSquare,
     isAction: true
-  },
-  {
-    label: "Notificações",
-    href: "/notifications",
-    icon: Bell
   },
   {
     label: "Perfil",

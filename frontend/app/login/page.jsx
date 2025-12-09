@@ -53,7 +53,7 @@ export default function AuthPage() {
 
   async function onLogin(data) {
     setIsLoading(true);
-    // todo: integração com backend
+    //TODO: integração com backend (salvar token em localStorage)
   }
 
   async function onSignup(data) {

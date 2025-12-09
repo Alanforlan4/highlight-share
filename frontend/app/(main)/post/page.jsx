@@ -118,7 +118,7 @@ export default function CreatePostPage() {
                 onClick={() => fileInputRef.current?.click()}
                 className="aspect-square w-full flex flex-col items-center justify-center bg-muted/50 border-2 border-dashed hover:bg-muted cursor-pointer transition-colors"
               >
-                <div className="flex flx-col items-center gap-2 text-muted-foreground">
+                <div className="flex flex-col items-center gap-2 text-muted-foreground">
                   <div className="p-4 bg-bakcground rounded-full shadow-sm">
                     <UploadCloud className="h-8 w-8" />
                   </div>

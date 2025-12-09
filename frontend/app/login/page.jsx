@@ -129,7 +129,10 @@ export default function AuthPage() {
 
             {/* Tab de cadastro */}
             <TabsContent value="register">
-              <form onSubmit={handleSubmitSignup(onSignup)} className="space-y-4">
+              <form
+                onSubmit={handleSubmitSignup(onSignup)}
+                className="space-y-4"
+              >
                 <div className="space-y-2">
                   <Label htmlFor="signup-username">Usuário</Label>
                   <div className="relative">

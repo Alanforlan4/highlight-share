@@ -32,6 +32,7 @@ const registerSchema = z.object({
 export default function AuthPage() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const [activeTab, setActiveTab] = useState("login");
 
   // Login Form
   const {
@@ -53,12 +54,64 @@ export default function AuthPage() {
 
   async function onLogin(data) {
     setIsLoading(true);
-    //TODO: integração com backend (salvar token em localStorage)
+    try {
+      const res = await fetch("http://localhost:8080/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (res.ok) {
+        const json = await res.json();
+
+        localStorage.setItem("token", json.token);
+
+        localStorage.setItem("userId", json.userId);
+        localStorage.setItem("username", json.username);
+
+        router.push("/");
+      } else {
+        alert("Login falhou! Verifique usuário e senha.");
+      }
+    } catch (error) {
+      console.error("Erro de conexão:", error);
+      alert("Não foi possível conectar ao servidor.");
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   async function onSignup(data) {
     setIsLoading(true);
-    //TODO: integração com backend
+    try {
+      const payload = {
+        username: data.username,
+        password: data.password,
+        email: `${data.username}@exemplo.com`, // Email fake
+        avatarUrl: `https://i.pravatar.cc/150?u=${data.username}`, // Avatar gerado pelo user
+        role: "MEMBER",
+      };
+
+      const res = await fetch("http://localhost:8080/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (res.status === 201) {
+        alert("Conta criada com sucesso! Agora faça login.");
+        setActiveTab("login"); // Muda a aba para Login automaticamente
+      } else if (res.status === 409) {
+        alert("Este usuário já existe.");
+      } else {
+        alert("Erro ao criar conta. Tente novamente.");
+      }
+    } catch (error) {
+      console.error("Erro no cadastro:", error);
+      alert("Erro ao conectar com o servidor.");
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -73,7 +126,7 @@ export default function AuthPage() {
         </CardHeader>
 
         <CardContent>
-          <Tabs defaultValue="login" className="w-full">
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
             <TabsList className="grid w-full grid-cols-2 mb-4">
               <TabsTrigger value="login">Entrar</TabsTrigger>
               <TabsTrigger value="register">Cadastrar</TabsTrigger>
